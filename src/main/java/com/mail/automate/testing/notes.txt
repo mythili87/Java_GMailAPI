@@ -1,0 +1,18 @@
+//To Fetch unseen messages from inbox folder
+Message[] messages = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false)); -->set true for seen mails
+
+//Sort messages from recent to oldest
+        Arrays.sort( messages, ( m1, m2 ) -> {
+            try {
+                return m2.getSentDate().compareTo( m1.getSentDate() );
+            } catch ( MessagingException e ) {
+                throw new RuntimeException( e );
+            }
+        } );
+
+ //iterate over messages
+        for ( Message message : messages ) {
+                    System.out.println(
+                            "sendDate: " + message.getSentDate()
+                                    + " subject:" + message.getSubject() );
+                }
